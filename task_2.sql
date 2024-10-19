@@ -1,5 +1,5 @@
 -- Create the books table
-CREATE TABLE books (
+CREATE TABLE IF NOT EXIST books (
     book_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     author_id INT,
