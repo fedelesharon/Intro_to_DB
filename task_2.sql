@@ -1,5 +1,5 @@
 -- Create the books table
-CREATE TABLE IF NOT EXIST books (
+CREATE TABLE IF NOT EXISTS Books (
     book_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     author_id INT,
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXIST books (
 );
 
 -- Create the authors table
-CREATE TABLE authors (
+CREATE TABLE IF NOT EXISTS Authors (
     author_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE authors (
 );
 
 -- Create the customers table
-CREATE TABLE customers (
+CREATE TABLE IF NOT EXISTS Customers (
     customer_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE customers (
 );
 
 -- Create the orders table
-CREATE TABLE orders (
+CREATE TABLE IF NOT EXISTS Orders (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT,
     order_date DATETIME NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE orders (
 );
 
 -- Create the order_details table
-CREATE TABLE order_details (
+CREATE TABLE IF NOT EXISTS Order_details (
     order_detail_id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT,
     book_id INT,
