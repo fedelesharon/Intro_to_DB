@@ -1,48 +1,46 @@
--- Create the books table
-CREATE TABLE IF NOT EXISTS Books (
+-- Create books table
+CREATE TABLE IF NOT EXISTS books (
     book_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    author_id INT,
+    author_name VARCHAR(255) NOT NULL,
     genre VARCHAR(100),
     price DECIMAL(10, 2) NOT NULL,
-    published_date DATE,
-    FOREIGN KEY (author_id) REFERENCES authors(author_id)
+    stock_quantity INT NOT NULL
 );
 
--- Create the authors table
-CREATE TABLE IF NOT EXISTS Authors (
+-- Create authors table
+CREATE TABLE IF NOT EXISTS authors (
     author_id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(100) NOT NULL,
-    last_name VARCHAR(100) NOT NULL,
-    birth_date DATE,
+    name VARCHAR(255) NOT NULL,
+    bio TEXT,
     nationality VARCHAR(100)
 );
 
--- Create the customers table
-CREATE TABLE IF NOT EXISTS Customers (
+-- Create customers table
+CREATE TABLE IF NOT EXISTS customers (
     customer_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
-    phone_number VARCHAR(15),
-    address VARCHAR(255)
+    phone VARCHAR(15),
+    address TEXT
 );
 
--- Create the orders table
-CREATE TABLE IF NOT EXISTS Orders (
+-- Create orders table
+CREATE TABLE IF NOT EXISTS orders (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
-    customer_id INT,
-    order_date DATETIME NOT NULL,
-    status VARCHAR(50) NOT NULL,
+    customer_id INT NOT NULL,
+    order_date DATE NOT NULL,
     total_amount DECIMAL(10, 2) NOT NULL,
+    status VARCHAR(50) NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 );
 
--- Create the order_details table
-CREATE TABLE IF NOT EXISTS Order_details (
+-- Create order details table
+CREATE TABLE IF NOT EXISTS order_details (
     order_detail_id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT,
-    book_id INT,
+    order_id INT NOT NULL,
+    book_id INT NOT NULL,
     quantity INT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (order_id) REFERENCES orders(order_id),
